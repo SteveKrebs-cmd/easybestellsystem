@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bestellsystem für Vereine & Anlässe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      color: #111827;
+    }
+    header {
+      background: #10b981;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #065f46;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .highlight {
+      font-weight: 600;
+      color: #10b981;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-family: inherit;
+    }
+    button {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover {
+      background-color: #059669;
+    }
+    #calendar {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bestellsystem für Vereine & Anlässe</h1>
+    <p>powered by <a href="https://orderjutsu.org" target="_blank" style="color: white; text-decoration: underline;">orderjutsu.org</a></p>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>Einfach. Modern. Bewährt.</h2>
+      <p>Unser Bestellsystem ermöglicht eine schnelle und einfache Abwicklung bei Vereinsanlässen, Dorffesten und Events. Die Lösung basiert auf dem System von <strong>orderjutsu.org</strong>.</p>
+    </div>
+
+    <div class="card">
+      <h2>Preise</h2>
+      <ul>
+        <li><span class="highlight">CHF 100</span> für Installation und Programmierung</li>
+        <li><span class="highlight">CHF 250</span> pro Anlass (1 Tag)</li>
+        <li><span class="highlight">CHF 150</span> für jeden Folgeanlass bei bestehender Installation</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Material & Kompatibilität</h2>
+      <ul>
+        <li>6x Nokia-Handys für Servicepersonal verfügbar</li>
+        <li>3x Bondrucker im Bestand</li>
+        <li>Weitere eigene Geräte problemlos integrierbar</li>
+        <li>System funktioniert auf jedem Smartphone oder PC</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Vorteile</h2>
+      <ul>
+        <li>Schnelle Bedienung</li>
+        <li>Keine langen Wartezeiten für Gäste</li>
+        <li>Servicepersonal kann System vorab testen</li>
+        <li>Kein Papierchaos – alle Bestellungen digital</li>
+        <li>Einfaches Abrechnen über Bondrucker</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Verfügbarkeitskalender</h2>
+      <div id='calendar'></div>
+    </div>
+
+    <div class="card">
+      <h2>Anfrage stellen</h2>
+      <form action="https://formspree.io/f/moqbdzay" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="_replyto" required>
+
+        <label for="datum">Wunschtermin</label>
+        <input type="date" id="datum" name="datum" required>
+
+        <label for="nachricht">Nachricht</label>
+        <textarea id="nachricht" name="message" rows="4"></textarea>
+
+        <button type="submit">Anfrage absenden</button>
+      </form>
+    </div>
+  </section>
+
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        editable: true,
+        selectable: true,
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek'
+        },
+        events: [
+          { title: 'Reserviert: Turnverein Frick', start: '2025-08-10' },
+          { title: 'Reserviert: Sommerfest', start: '2025-08-20' }
+        ],
+        dateClick: function (info) {
+          const title = prompt('Titel für neue Reservation:');
+          if (title) {
+            calendar.addEvent({ title: title, start: info.dateStr });
+          }
+        },
+        eventClick: function (info) {
+          if (confirm('Event löschen?')) {
+            info.event.remove();
+          }
+        }
+      });
+      calendar.render();
+    });
+  </script>
+</body>
+</html>
