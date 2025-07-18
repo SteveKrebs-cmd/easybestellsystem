@@ -94,4 +94,64 @@
         <li>Weitere eigene Geräte problemlos integrierbar</li>
         <li>System funktioniert auf jedem Smartphone oder PC</li>
       </ul>
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+(function() {
+  emailjs.init("dein_user_id");
+})();
+</script>
+
+<form id="kontaktForm">
+  <input type="text" name="name" placeholder="Dein Name">
+  <input type="email" name="email" placeholder="Deine E-Mail">
+  <textarea name="message" placeholder="Nachricht"></textarea>
+  <button type="submit">Senden</button>
+</form>
+<!-- Kalender -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
+
+<div id='calendar'></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    selectable: true,
+    editable: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek'
+    },
+    events: [
+      { title: 'Reserviert: Turnverein Frick', start: '2025-08-10' },
+      { title: 'Reserviert: Sommerfest', start: '2025-08-20' }
+    ],
+    dateClick: function (info) {
+      const title = prompt('Titel für neue Reservation:');
+      if (title) {
+        calendar.addEvent({ title: title, start: info.dateStr });
+      }
+    },
+    eventClick: function (info) {
+      if (confirm('Event löschen?')) {
+        info.event.remove();
+      }
+    }
+  });
+  calendar.render();
+});
+</script>
+
+<script>
+document.getElementById('kontaktForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  emailjs.sendForm('dein_service_id', 'dein_template_id', this)
+    .then(() => alert('Nachricht erfolgreich versendet!'))
+    .catch(() => alert('Fehler beim Versand.'));
+});
+</script>
+
     </div>
