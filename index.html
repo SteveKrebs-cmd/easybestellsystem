@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -12,7 +11,7 @@
       margin: 0;
       font-family: 'Inter', sans-serif;
       background: #f9fafb;
-      color: #111427;
+      color: #111827;
     }
     header {
       background: #10b981;
@@ -26,7 +25,7 @@
       margin: auto;
     }
     h1, h2 {
-      color: #065f26;
+      color: #065f46;
     }
     .card {
       background: white;
@@ -61,28 +60,29 @@
       background-color: #059669;
     }
     #calendar {
-      max-width: 100%;
-      margin-top: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Bestellsystem für Vereine & Anlässe</h1>
-   
+    <p>powered by <a href="https://orderjutsu.org" target="_blank" style="color: white; text-decoration: underline;">orderjutsu.org</a></p>
+  </header>
 
   <section>
     <div class="card">
       <h2>Einfach. Modern. Bewährt.</h2>
-      <p>Unser Bestellsystem ermöglicht eine schnelle und einfache Abwicklung bei Vereinsanlässen, Dorffesten und Events. Die Lösung basiert auf dem System von <strong>orderjutsu.org</strong>.</p>
+      <p>Unser Bestellsystem ermöglicht eine schnelle und einfache Abwicklung bei Vereinsanlässen, Dorffesten und Events. Die Lösung basiert auf dem System von <strong>orderjutsu.org</strong> – einem erprobten und intuitiven System für mobile Bestellungen.</p>
     </div>
 
     <div class="card">
       <h2>Preise</h2>
       <ul>
-        <li><span class="highlight">100 CHF</span> für Installation und Programmierung</li>
-        <li><span class="highlight">250 CHF</span> pro Anlass (1 Tag)</li>
-        <li><span class="highlight">150 CHF</span> für jeden zus. Tag/Anlass</li>
+        <li><span class="highlight">CHF 100</span> für Installation und Programmierung</li>
+        <li><span class="highlight">CHF 250</span> pro Anlass (1 Tag)</li>
+        <li><span class="highlight">CHF 150</span> für jeden Folgeanlass bei bestehender Installation</li>
       </ul>
     </div>
 
@@ -95,74 +95,3 @@
         <li>System funktioniert auf jedem Smartphone oder PC</li>
       </ul>
     </div>
-
-    <div class="card">
-      <h2>Vorteile</h2>
-      <ul>
-        <li>Schnelle Bedienung</li>
-        <li>Keine langen Wartezeiten für Gäste</li>
-        <li>Servicepersonal kann System vorab testen</li>
-        <li>Kein Papierchaos – alle Bestellungen digital</li>
-        <li>Einfaches Abrechnen über Bondrucker</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Verfügbarkeitskalender</h2>
-      <div id='calendar'></div>
-    </div>
-
-    <div class="card">
-      <h2>Anfrage stellen</h2>
-      <form action="https://formspree.io/f/moqbdzay" method="POST">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">E-Mail</label>
-        <input type="email" id="email" name="_replyto" required>
-
-        <label for="datum">Wunschtermin</label>
-        <input type="date" id="datum" name="datum" required>
-
-        <label for="nachricht">Nachricht</label>
-        <textarea id="nachricht" name="message" rows="4"></textarea>
-
-        <button type="submit">Anfrage absenden</button>
-      </form>
-    </div>
-  </section>
-
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        editable: true,
-        selectable: true,
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek'
-        },
-        events: [
-          { title: 'Reserviert: Turnverein Frick', start: '2025-08-10' },
-          { title: 'Reserviert: Sommerfest', start: '2025-08-20' }
-        ],
-        dateClick: function (info) {
-          const title = prompt('Titel für neue Reservation:');
-          if (title) {
-            calendar.addEvent({ title: title, start: info.dateStr });
-          }
-        },
-        eventClick: function (info) {
-          if (confirm('Event löschen?')) {
-            info.event.remove();
-          }
-        }
-      });
-      calendar.render();
-    });
-  </script>
-</body>
-</html>
