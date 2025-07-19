@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Gebucht",
+    "start": "2025-07-18",
+    "color": "#f87171"
+  },
+  {
+    "title": "Verfügbar",
+    "start": "2025-07-19",
+    "color": "#34d399"
+  },
+  {
+    "title": "Verfügbar",
+    "start": "2025-07-20",
+    "color": "#34d399"
+  },
+  {
+    "title": "Gebucht",
+    "start": "2025-07-21",
+    "color": "#f87171"
+  },
+  {
+    "title": "Verfügbar",
+    "start": "2025-07-22",
+    "color": "#34d399"
+  }
+]
